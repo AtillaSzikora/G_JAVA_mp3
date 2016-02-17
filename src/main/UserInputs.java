@@ -2,37 +2,39 @@ package main;
 
 import java.io.File;
 
-public class UserInputs {
-    private String findDir(File root, String name){
-        if(root.getName().equals(name)){
-            return root.getAbsolutePath();
-        }
+import java.util.ArrayList;
+import java.util.List;
 
-        File[] files = root.listFiles();
-        String allRes = "";
-        if (files != null){
-            for (File file : files) {
-                if (file.isDirectory()) {
-                    String result = findDir(file, name);
-                    if (result == null){
-                        continue;
-                    }
-                    else {
-                        return result;
-                    }
+public class UserInputs {
+
+    public static List<File> findDir(String name, File root) {
+        List<File> result = new ArrayList<>();
+
+        for (File file : root.listFiles()) {
+            if (file.isDirectory()) {
+                if (file.getName().equals(name)) {
+                    result.add(file);
                 }
+
+                result.addAll(findDir(name, file));
             }
         }
 
-        return null;
+        return result;
     }
 
 
     public static void main(String[] args) {
         UserInputs test = new UserInputs();
-        File f = new File("C:\\CodeCool");
+        File filePath = new File("C:\\CodeCool");
 
-        String teszt = test.findDir(f,"RADS");
-        System.out.println(teszt);
+        List<File> files = findDir("RADS", filePath);
+
+        for (File f :files) {
+            System.out.println(f);
+        }
+
+
+
     }
 }
