@@ -1,9 +1,8 @@
 package main;
-​
+
 import java.io.File;
 import java.io.RandomAccessFile;
-​
-​
+
 public class ID3Tag
 {
 	private String title;
@@ -12,11 +11,11 @@ public class ID3Tag
 	private int year;
 	private String comment;
 	private int genre;
-​
+
 	private ID3Tag() {
 	
 	}
-​
+
 	private static byte[] readXBytes(byte[] byteArray, int fromPos, int toPos) {
 		byte[] resultArray = new byte[toPos - fromPos];
 		for (int i = fromPos; i < toPos; i++)
@@ -25,7 +24,7 @@ public class ID3Tag
 		}
 		return resultArray;
 	}
-​
+
 	public static ID3Tag parse(File file)	{
 		byte[] last128 = tail(file);
 		byte[] baTitle = readXBytes(last128, 3, 33);
@@ -40,7 +39,7 @@ public class ID3Tag
 		String comment = new String(baComment).trim();
 		byte[] baGenre = readXBytes(last128, 127, 128);
 		int genre = (int) (new String(baGenre).charAt(0));
-​
+
 		ID3Tag tag = new ID3Tag();
 		tag.setTitle(title);
 		tag.setArtist(artist);
@@ -48,17 +47,17 @@ public class ID3Tag
 		tag.setYear(year);
 		tag.setComment(comment);
 		tag.setGenre(genre);
-​
+
 		return tag;
 	}
-​
+
 	public static byte[] tail(File file) {
 		try
 		{
 			RandomAccessFile fileHandler = new RandomAccessFile(file, "r");
 			long fileLength = fileHandler.length() - 1;
 			byte[] buffer = new byte[128];
-​
+
 			for (int i = 0; i < buffer.length; i++)
 			{
 				fileHandler.seek(fileLength - 127 + i);
@@ -73,55 +72,55 @@ public class ID3Tag
 		}
 		return null;
 	}
-​
+
 	public String getTitle() {
 		return title;
 	}
-​
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
-​
+
 	public String getArtist() {
 		return artist;
 	}
-​
+
 	public void setArtist(String artist) {
 		this.artist = artist;
 	}
-​
+
 	public String getAlbum() {
 		return album;
 	}
-​
+
 	public void setAlbum(String album) {
 		this.album = album;
 	}
-​
+
 	public int getYear() {
 		return year;
 	}
-​
+
 	public void setYear(int year)	{
 		this.year = year;
 	}
-​
+
 	public String getComment() {
 		return comment;
 	}
-​
+
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
-​
+
 	public int getGenre()	{
 		return genre;
 	}
-​
+
 	public void setGenre(int genre) {
 		this.genre = genre;
 	}
-​
+
 	@Override
 	public boolean equals(Object o) {
 		ID3Tag tag = (ID3Tag) o;
@@ -129,12 +128,12 @@ public class ID3Tag
 				&& ((album == null && tag.album == null) || album.equals(tag.album)) && (year == tag.year) && ((comment == null && tag.comment == null) || comment.equals(tag.comment))
 				&& (genre == tag.genre);
 	}
-​
+
 	@Override
 	public int hashCode()	{
 		return -1;
 	}
-​
+
 	@Override
 	public String toString()
 	{
@@ -148,5 +147,5 @@ public class ID3Tag
 	    
 	    return mp3Tag.toString();
 	}
-​
+
 }
