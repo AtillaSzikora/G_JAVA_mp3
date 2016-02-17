@@ -31,6 +31,9 @@ public class DirectoryScanner {
 	}
 
     public List<File> getMP3Files() {
+	if (mp3Files.size() == 0) {
+	    System.out.println("No mp3 files in directory.");
+	}
 	return mp3Files;
     }
 
@@ -56,5 +59,5 @@ public class DirectoryScanner {
 	    }
 	}
     }
-
+    
 }
