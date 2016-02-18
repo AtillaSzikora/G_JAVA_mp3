@@ -35,10 +35,6 @@ public class UserInputs {
     }
 
 
-    public static void main(String[] args) {
-        getFolderNameCheckIfExist();
-
-
 
 /*This code is a part of the method Called findDir that finds the folder with the given name */
 
@@ -56,4 +52,4 @@ public class UserInputs {
 
 
     }
-}
+
