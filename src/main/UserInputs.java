@@ -22,22 +22,22 @@ public class UserInputs {
 
         return result;
     }
-    static public String getFolderNameInput(){
+    static public File getFolderNameCheckIfExist(){
         Scanner in = new Scanner(System.in);
         String path = in.nextLine();
-        return path;
+        File dir = new File(path);
+        while (!dir.exists()){
+            System.out.println("The directory you entered does not exist, type the valid path: ");
+            path = in.nextLine();
+            dir = new File(path);
+        }
+        return dir;
     }
 
 
     public static void main(String[] args) {
-        UserInputs test = new UserInputs();
-        String dirPath = getFolderNameInput();
-        File dir = new File(dirPath);
-        while (!dir.exists()){
-            System.out.println("The directory you entered does not exist, type the valid path: ");
-            dirPath = getFolderNameInput();
-            dir = new File(dirPath);
-        }
+        getFolderNameCheckIfExist();
+
 
 
 /*This code is a part of the method Called findDir that finds the folder with the given name */
