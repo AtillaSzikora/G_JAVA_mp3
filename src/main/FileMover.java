@@ -1,8 +1,6 @@
 package main;
 
 import java.io.File;
-import java.nio.file.Files;
-import java.util.ArrayList;
 import java.util.List;
 
 public class FileMover {
@@ -38,13 +36,22 @@ public class FileMover {
         for (File file : mp3files){
             ID3Tag tag = ID3Tag.parse(file);
             String destination = path + "\\" + returnChoosenCategory(categoryName,tag) + "\\" + file.getName();
-            file.renameTo(new File(destination));
-            counter +=1;
+            deleteFileIfExist(destination);
+            if (file.renameTo(new File(destination))){
+                counter +=1;
+            }
         }
-        System.out.println(" \n The process is done: ");
-        System.out.println("The program moved: " + counter + "files");
+        System.out.println("\nProcess is done: ");
+        System.out.println("The program moved: " + counter + " files");
 
 
+    }
+
+    public static void deleteFileIfExist(String destination) {
+        File destinationToBe = new File(destination);
+        if (destinationToBe.exists()){
+            destinationToBe.delete();
+        }
     }
 
 
