@@ -8,6 +8,8 @@ import java.util.Scanner;
 
 public class UserInputs {
 
+
+
     public static List<File> findDir(String name, File root) {
         List<File> result = new ArrayList<>();
         for (File file : root.listFiles()) {
@@ -22,6 +24,8 @@ public class UserInputs {
 
         return result;
     }
+
+
     static public File getFolderNameCheckIfExist(){
         Scanner in = new Scanner(System.in);
         String path = in.nextLine();
@@ -31,6 +35,7 @@ public class UserInputs {
             path = in.nextLine();
             dir = new File(path);
         }
+        String relPath = path;
         return dir;
     }
 
