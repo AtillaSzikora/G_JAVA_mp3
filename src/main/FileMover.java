@@ -21,19 +21,21 @@ public class FileMover {
             retName = String.valueOf(mp3Tag.getYear());
         }
         else if (categoryName == "genre"){
-            retName = String.valueOf(GenreMapper.matchGenre(mp3Tag.getGenre()));
+            retName = GenreMapper.types.get(mp3Tag.getGenre());
         }
         return retName;
     }
 
-    public static void moveFileIntoFolder(List<File> mp3files, String path,String categoryName){
+    public static void moveFileIntoFolder(List<File> mp3files, File path,String categoryName){
         int counter = 0;
         List<String> mp3sNotMoved = new ArrayList<>();
         for (File file : mp3files){
             ID3Tag tag = ID3Tag.parse(file);
-            String destination = path + "\\" + returnChoosenCategory(categoryName,tag) + "\\" + file.getName();
-            deleteFileIfExist(destination);
-            if (file.renameTo(new File(destination))){
+            File destination = new File(path + "\\" + returnChoosenCategory(categoryName,tag) + "\\" + file.getName());
+            if (destination.exists()){
+                destination.delete();
+            }
+            if (file.renameTo(destination)){
                 counter +=1;
             } else {
                 mp3sNotMoved.add(file.getName());
@@ -42,17 +44,10 @@ public class FileMover {
         System.out.println("\nProcess is done: ");
         System.out.println("The program moved: " + counter + " files");
         if (!mp3sNotMoved.isEmpty()) {
-            System.out.println("\nThese files do not have properties so it cannot be arranged: \n");
+            System.out.println("\nThese files have wrong tag formats so they cannot be arranged: \n");
             for (String List : mp3sNotMoved) {
                 System.out.println(List);
             }
-        }
-    }
-
-    public static void deleteFileIfExist(String destination) {
-        File fileToDelete = new File(destination);
-        if (fileToDelete.exists()){
-            fileToDelete.delete();
         }
     }
 }

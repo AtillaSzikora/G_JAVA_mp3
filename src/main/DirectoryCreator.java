@@ -21,35 +21,31 @@ public class DirectoryCreator {
         return resultList; }
 
     public void collectTagsFromFiles(List<File> mp3Files, String tagName) {
-        List<String> tagList = new ArrayList<>();
         for (File file : mp3Files) {
             ID3Tag tag = ID3Tag.parse(file);
             if (tagName.equals("title")) {
-                tagList.add(tag.getTitle());
+                resultList.add(tag.getTitle());
             }
             if (tagName.equals("artist")) {
-                tagList.add(tag.getArtist());
+                resultList.add(tag.getArtist());
             }
             if (tagName.equals("album")) {
-                tagList.add(tag.getAlbum());
+                resultList.add(tag.getAlbum());
             }
             if (tagName.equals("year")) {
-                tagList.add(String.valueOf(tag.getYear()));
+                resultList.add(String.valueOf(tag.getYear()));
             }
             if (tagName.equals("genre")) {
-                tagList.add(GenreMapper.matchGenre(tag.getGenre()));
+                resultList.add(GenreMapper.matchGenre(tag.getGenre()));
             }
-        }
-        for (String tag : tagList) {
-            resultList.add(tag);
         }
     }
 
-    public static void createFolders(List<String> tagList, String path) {
+    public static void createFolders(List<String> tagList, File path) {
         for (String tagValue : tagList) {
             if (tagValue != null) {
                 File currentDir = new File(path + "//" + tagValue);
-                if (!currentDir.exists() || !currentDir.getName().toLowerCase().equals(tagValue) ) {
+                if (!currentDir.exists() || /* what is this >> */ !currentDir.getName().toLowerCase().equals(tagValue.toLowerCase()) ) {
                     currentDir.mkdir();
                 }
             }

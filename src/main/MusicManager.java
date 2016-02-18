@@ -13,7 +13,7 @@ public class MusicManager {
         String chosenCategory = UserInputs.returnCategoryName();
         DirectoryScanner ds = new DirectoryScanner(path);
         DirectoryCreator dc = new DirectoryCreator(ds.getMP3Files(),chosenCategory);
-        DirectoryCreator.createFolders(dc.getID3TagList(),path.toString());
-        FileMover.moveFileIntoFolder(ds.getMP3Files(),path.toString(),chosenCategory);
+        DirectoryCreator.createFolders(dc.getID3TagList(),path);
+        FileMover.moveFileIntoFolder(ds.getMP3Files(),path,chosenCategory);
     }
 }
