@@ -10,20 +10,20 @@ public class UserInputs {
 
 
 
-    public static List<File> findDir(String name, File root) {
-        List<File> result = new ArrayList<>();
-        for (File file : root.listFiles()) {
-            if (file.isDirectory()) {
-                if (file.getName().equals(name)) {
-                    result.add(file);
-                }
-                result.addAll(findDir(name, file));
-            }
-
-        }
-
-        return result;
-    }
+//    public static List<File> findDir(String name, File root) {
+//        List<File> result = new ArrayList<>();
+//        for (File file : root.listFiles()) {
+//            if (file.isDirectory()) {
+//                if (file.getName().equals(name)) {
+//                    result.add(file);
+//                }
+//                result.addAll(findDir(name, file));
+//            }
+//
+//        }
+//
+//        return result;
+//    }
 
 
     static public File getFolderNameCheckIfExist(){
@@ -35,7 +35,6 @@ public class UserInputs {
             path = in.nextLine();
             dir = new File(path);
         }
-        String relPath = path;
         
         return dir;
     }

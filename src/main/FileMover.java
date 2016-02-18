@@ -48,9 +48,9 @@ public class FileMover {
     }
 
     public static void deleteFileIfExist(String destination) {
-        File destinationToBe = new File(destination);
-        if (destinationToBe.exists()){
-            destinationToBe.delete();
+        File fileToDelete = new File(destination);
+        if (fileToDelete.exists()){
+            fileToDelete.delete();
         }
     }
 
