@@ -12,7 +12,7 @@ public class MusicManager {
         System.out.println("Please enter the path to your folder: ");
         File path = UserInputs.getFolderNameCheckIfExist();
         String choosedCategory = CategoryChooser.returnCategoryName();
-        DirectoryScanner ds = new DirectoryScanner(path,"mp3");
+        DirectoryScanner ds = new DirectoryScanner(path);
         DirectoryCreator dc = new DirectoryCreator(ds.getMP3Files(),choosedCategory);
         dc.createFolders(dc.getID3TagList(),path.toString());
 
