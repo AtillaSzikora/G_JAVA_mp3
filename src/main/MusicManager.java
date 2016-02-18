@@ -16,6 +16,7 @@ public class MusicManager {
         DirectoryCreator dc = new DirectoryCreator(ds.getMP3Files(),choosedCategory);
         dc.createFolders(dc.getID3TagList(),path.toString());
 
+
         FileMover.moveFileIntoFolder(ds.getMP3Files(),path.toString(),choosedCategory);
 
 

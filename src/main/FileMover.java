@@ -27,19 +27,22 @@ public class FileMover {
             retName = String.valueOf(mp3Tag.getYear());
         }
         else if (categoryName == "genre"){
-            retName = String.valueOf(mp3Tag.getGenre());
+            retName = String.valueOf(GenreMapper.matchGenre(mp3Tag.getGenre()));
         }
         return retName;
 
     }
 
     public static void moveFileIntoFolder(List<File> mp3files, String path,String categoryName){
+        int counter = 0;
         for (File file : mp3files){
             ID3Tag tag = ID3Tag.parse(file);
             String destination = path + "\\" + returnChoosenCategory(categoryName,tag) + "\\" + file.getName();
-            System.out.println(destination);
             file.renameTo(new File(destination));
+            counter +=1;
         }
+        System.out.println(" \n The process is done: ");
+        System.out.println("The program moved: " + counter + "files");
 
 
     }
