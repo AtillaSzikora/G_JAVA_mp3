@@ -13,7 +13,7 @@ public class DirectoryScanner {
 
     List<File> mp3Files;
 
-    public DirectoryScanner(File directory, String extension) throws FileNotFoundException, NotDirectoryException {
+    public DirectoryScanner(File directory) throws FileNotFoundException, NotDirectoryException {
 	
 		if (!directory.exists()) {
 		

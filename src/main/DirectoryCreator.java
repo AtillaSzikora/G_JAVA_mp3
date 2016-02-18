@@ -53,7 +53,7 @@ public class DirectoryCreator {
     }
 
 
-    public void createFolders(List<String> tagList,String path) {
+    public static void createFolders(List<String> tagList, String path) {
         for (String tagValue : tagList) {
             if (tagValue != null) {
                 File currentDir = new File(path + "//" + tagValue);

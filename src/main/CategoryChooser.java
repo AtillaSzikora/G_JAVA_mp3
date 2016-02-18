@@ -17,7 +17,8 @@ public class CategoryChooser {
     static void getCategoryNumber() {
         Scanner input = new Scanner(System.in);
         System.out.print(printCategories());
-        choosenNumber = input.nextLine(); }
+        choosenNumber = input.nextLine();
+        input.close(); }
 
     static String returnCategoryName() {
         getCategoryNumber();
