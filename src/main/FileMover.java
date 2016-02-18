@@ -6,11 +6,6 @@ import java.util.List;
 
 public class FileMover {
 
-    /*athelyezzuk a szamokat az almappakba  a kiválasztott kategória szerint
-    + amelyiknek nincsen tag-e akkor nem csinálunk semmit
-     */
-
-
     public static String returnChoosenCategory(String categoryName, ID3Tag mp3Tag){
         String retName = "";
         if (categoryName == "album"){
@@ -29,7 +24,6 @@ public class FileMover {
             retName = String.valueOf(GenreMapper.matchGenre(mp3Tag.getGenre()));
         }
         return retName;
-
     }
 
     public static void moveFileIntoFolder(List<File> mp3files, String path,String categoryName){
@@ -53,8 +47,6 @@ public class FileMover {
                 System.out.println(List);
             }
         }
-
-
     }
 
     public static void deleteFileIfExist(String destination) {
@@ -63,6 +55,4 @@ public class FileMover {
             fileToDelete.delete();
         }
     }
-
-
 }

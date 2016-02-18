@@ -5,13 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.lang.*;
 
-
-
 public class DirectoryCreator {
-    /*
-     * bekapja az ID3-tag listat vegig megy rajta, es megcsinalja a mappakat a
-     * listaban szereplo tag nevek alapjan, ha van ilyen mappa nem csinal semmit
-     */
+
     List<String> resultList;
 
     public DirectoryCreator(List<File> musicFiles, String id3Tag) {
@@ -23,9 +18,7 @@ public class DirectoryCreator {
         if (resultList.size() == 0) {
             System.out.println("No tags in the list.");
         }
-        return resultList;
-    }
-
+        return resultList; }
 
     public void collectTagsFromFiles(List<File> mp3Files, String tagName) {
         List<String> tagList = new ArrayList<>();
@@ -52,17 +45,14 @@ public class DirectoryCreator {
         }
     }
 
-
     public static void createFolders(List<String> tagList, String path) {
         for (String tagValue : tagList) {
             if (tagValue != null) {
                 File currentDir = new File(path + "//" + tagValue);
                 if (!currentDir.exists() || !currentDir.getName().toLowerCase().equals(tagValue) ) {
                     currentDir.mkdir();
-
                 }
             }
         }
     }
-
 }

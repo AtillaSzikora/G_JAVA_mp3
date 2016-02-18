@@ -9,17 +9,11 @@ public class MusicManager {
 
     public static void main(String[] args) throws IOException, NotDirectoryException {
 
-        System.out.println("Please enter the path to your folder: ");
         File path = UserInputs.getFolderNameCheckIfExist();
-        String choosedCategory = CategoryChooser.returnCategoryName();
+        String chosenCategory = UserInputs.returnCategoryName();
         DirectoryScanner ds = new DirectoryScanner(path);
-        DirectoryCreator dc = new DirectoryCreator(ds.getMP3Files(),choosedCategory);
-        dc.createFolders(dc.getID3TagList(),path.toString());
-
-
-        FileMover.moveFileIntoFolder(ds.getMP3Files(),path.toString(),choosedCategory);
-
-
-
+        DirectoryCreator dc = new DirectoryCreator(ds.getMP3Files(),chosenCategory);
+        DirectoryCreator.createFolders(dc.getID3TagList(),path.toString());
+        FileMover.moveFileIntoFolder(ds.getMP3Files(),path.toString(),chosenCategory);
     }
 }

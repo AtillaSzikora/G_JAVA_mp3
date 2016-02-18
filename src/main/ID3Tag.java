@@ -12,9 +12,7 @@ public class ID3Tag
 	private String comment;
 	private int genre;
 
-	private ID3Tag() {
-	
-	}
+	private ID3Tag() {}
 
 	private static byte[] readXBytes(byte[] byteArray, int fromPos, int toPos) {
 		byte[] resultArray = new byte[toPos - fromPos];
@@ -47,7 +45,6 @@ public class ID3Tag
 		tag.setYear(year);
 		tag.setComment(comment);
 		tag.setGenre(genre);
-
 		return tag;
 	}
 
