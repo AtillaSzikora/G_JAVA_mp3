@@ -1,6 +1,7 @@
 package main;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 public class FileMover {
@@ -33,16 +34,25 @@ public class FileMover {
 
     public static void moveFileIntoFolder(List<File> mp3files, String path,String categoryName){
         int counter = 0;
+        List<String> mp3sNotMoved = new ArrayList<>();
         for (File file : mp3files){
             ID3Tag tag = ID3Tag.parse(file);
             String destination = path + "\\" + returnChoosenCategory(categoryName,tag) + "\\" + file.getName();
             deleteFileIfExist(destination);
             if (file.renameTo(new File(destination))){
                 counter +=1;
+            } else {
+                mp3sNotMoved.add(file.getName());
             }
         }
         System.out.println("\nProcess is done: ");
         System.out.println("The program moved: " + counter + " files");
+        if (!mp3sNotMoved.isEmpty()) {
+            System.out.println("\nThese files do not have properties so it cannot be arranged: \n");
+            for (String List : mp3sNotMoved) {
+                System.out.println(List);
+            }
+        }
 
 
     }
