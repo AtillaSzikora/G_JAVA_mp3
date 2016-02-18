@@ -57,7 +57,7 @@ public class DirectoryCreator {
         for (String tagValue : tagList) {
             if (tagValue != null) {
                 File currentDir = new File(path + "//" + tagValue);
-                if (!currentDir.exists()) {
+                if (!currentDir.exists() || !currentDir.getName().toLowerCase().equals(tagValue) ) {
                     currentDir.mkdir();
 
                 }
