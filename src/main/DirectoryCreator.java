@@ -1,6 +1,7 @@
 package main;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class DirectoryCreator {
     }
     
     
-    public void collectTagsFromFiles(List<File> mp3Files, String tagName) {
+    private void collectTagsFromFiles(List<File> mp3Files, String tagName) {
 	List<String> tagList = new ArrayList<>();
 	for (File file : mp3Files) {
 	    ID3Tag tag = ID3Tag.parse(file);
@@ -50,10 +51,13 @@ public class DirectoryCreator {
 	}
     }
     
-    public static void createFolders(List<String> tagList) {
+    public static void createFolders(List<String> tagList, File folderName) throws FileNotFoundException {
+	if (!folderName.exists()) {
+	    throw new FileNotFoundException(l);
+	}
 	for (String tagValue : tagList) {
 	    if (tagValue != null) {
-		File currentDir = new File("music\\" + tagValue);
+		File currentDir = new File(folderName + "\\" + tagValue);
 		if (!currentDir.exists()) {
 		    currentDir.mkdir();
 		    
