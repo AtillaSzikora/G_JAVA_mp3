@@ -4,6 +4,7 @@ import exceptions.NotDirectoryException;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 public class MusicManager {
 
@@ -11,9 +12,11 @@ public class MusicManager {
 
         File path = UserInputs.getFolderNameCheckIfExist();
         String chosenCategory = UserInputs.returnCategoryName();
-        DirectoryScanner ds = new DirectoryScanner(path);
-        DirectoryCreator dc = new DirectoryCreator(ds.getMP3Files(),chosenCategory);
-        DirectoryCreator.createFolders(dc.getID3TagList(),path);
-        FileMover.moveFileIntoFolder(ds.getMP3Files(),path,chosenCategory);
+        DirectoryScanner musicDir = new DirectoryScanner(path);
+        List<File> mp3Files = musicDir.getMP3Files();
+	DirectoryCreator foldersToCreate = new DirectoryCreator(mp3Files,chosenCategory);
+        List<String> id3TagList = foldersToCreate.getID3TagList();
+	DirectoryCreator.createFolders(id3TagList,path);
+        FileMover.moveFileIntoFolder(mp3Files,path,chosenCategory);
     }
 }
