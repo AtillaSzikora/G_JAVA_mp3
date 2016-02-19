@@ -39,7 +39,6 @@ public class UserInputs {
             path = in.nextLine();
             dir = new File(path);
         }
-        in.close();
         return dir;
     }
 }
