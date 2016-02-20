@@ -44,7 +44,7 @@ public class FileMover {
         System.out.println("\nProcess is done: ");
         System.out.println("The program moved: " + counter + " files");
         if (!mp3sNotMoved.isEmpty()) {
-            System.out.println("\nThese files have wrong tag formats so they cannot be arranged: \n");
+            System.out.println("\nThese files have wrong or empty tag values, so they cannot be arranged: \n");
             for (String List : mp3sNotMoved) {
                 System.out.println(List);
             }

@@ -32,7 +32,7 @@ public class ID3Tag
 		byte[] baAlbum = readXBytes(last128, 63, 93);
 		String album = new String(baAlbum).trim();
 		byte[] baYear = readXBytes(last128, 93, 97);
-		int year = Integer.parseInt(new String(baYear).trim());
+		int year = !new String(baYear).equals("    ") ? Integer.parseInt(new String(baYear)) : 0;
 		byte[] baComment = readXBytes(last128, 97, 125);
 		String comment = new String(baComment).trim();
 		byte[] baGenre = readXBytes(last128, 127, 128);

@@ -34,7 +34,7 @@ public class DirectoryCreator {
 		resultList.add(tag.getAlbum());
 	    }
 	    if (tagName.equals("year")) {
-		resultList.add(String.valueOf(tag.getYear()));
+		resultList.add(tag.getYear() != 0 ? String.valueOf(tag.getYear()) : null);
 	    }
 	    if (tagName.equals("genre")) {
 		resultList.add(GenreMapper.types.get(tag.getGenre()));
@@ -44,7 +44,7 @@ public class DirectoryCreator {
 
     public static void createFolders(List<String> tagList, File path) {
         for (String tagValue : tagList) {
-            if (tagValue != null) {
+            if ( tagValue != null ) {
                 File currentDir = new File(path + "//" + tagValue);
 		if ( !currentDir.exists() ) {
 		    currentDir.mkdir();
